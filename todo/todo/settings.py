@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+div_count: int = 6
 
 # Application definition
 
@@ -38,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'todo_item'
+    'todo_item',
+    'main.templatetags'
 ]
 
 MIDDLEWARE = [
