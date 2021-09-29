@@ -6,7 +6,7 @@ data = {
         {'name': 'Дом', 'is_done': False},
         {'name': 'Учеба', 'is_done': True}
     ],
-    'user_name': 'Admin',
+    'user_name': 'Admin'
 }
 
 
