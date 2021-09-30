@@ -1,15 +1,20 @@
 from django.shortcuts import render
-
-data = {
-    'lists': [
-        {'name': 'Работа', 'is_done': True, 'date': '01.12.2019'},
-        {'name': 'Дом', 'is_done': False},
-        {'name': 'Учеба', 'is_done': True}
-    ],
-    'user_name': 'Admin'
-}
+from main.models import ListModel
 
 
 def main_view(request):
-    context = data
+    lists = ListModel.objects.filter(user=request.user)
+
+    # new_list = [
+    #     ListModel.objects.create(
+    #         name='Новый список {i}',
+    #         user=request.user
+    #     )
+    #     for i in [5, 6, 7]
+    # ]
+
+    context = {
+        'lists': lists,
+        'user_name': request.user.username
+    }
     return render(request, 'index.html', context)
