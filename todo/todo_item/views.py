@@ -1,16 +1,15 @@
 from django.shortcuts import render
+from main.models import ListModel
+from todo_item.models import ItemModel
 
-data = {
-    'lists': [
-        {'name': 'Купить шариков', 'is_done': True},
-        {'name': 'Заказать торт', 'is_done': False, 'date': '05.06.2020'},
-        {'name': 'Разослать приглашения', 'is_done': False}
-    ],
-    'user_name': 'Admin',
-    'list_name': 'Список дел'
-}
+def item_view(request, pk):
+    list_ = ListModel.objects.select_related('user').get(id=pk)
+    list_items = ItemModel.objects.filter(list_model=list_)
 
+    context = {
+        'lists': list_items,
+        'user_name': list_.user.username,
+        'list_name': list_.name
+    }
 
-def item_view(request):
-    context = data
     return render(request, 'list.html', context)
