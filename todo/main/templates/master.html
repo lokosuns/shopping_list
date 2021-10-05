@@ -52,19 +52,19 @@
                 {% endblock %}
 
 
-                <a class="add_new_list" href="/create/">
+                <a class="add_new_list" href="{% url 'main:create' %}">
                      <div class="header__button-create-bundle">+</div>
                 </a>
 
             </div>
 
-        {% block body %}
+            {% block body %}
 
-        {% endblock %}
+            {% endblock %}
 
-        {% block empty %}
+            {% block empty %}
 
-        {% endblock %}
+            {% endblock %}
 
         </div>
     </section>

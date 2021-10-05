@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-div_count: int = 6
+div_count = 6
 
 # Application definition
 
