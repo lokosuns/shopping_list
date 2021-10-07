@@ -1,0 +1,12 @@
+{% extends 'create_master.html' %}
+{% block header %}
+  <div class="auth__column_right_form__header">
+       Редактирование списка
+  </div>
+{% endblock %}
+{% block form %}
+  <form class="auth_form_class" action="{% url 'main:edit' pk %}" id="auth_form" method="POST">
+      {% csrf_token %}
+      {{ form.name }}
+  </form>
+{% endblock %}
