@@ -7,14 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-
     {% block title %}
 
     {% endblock %}
 
-
-
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="imges/favicon.png"/>
     <link rel="stylesheet" href="/static/css/index.css">
 </head>
 <body>
@@ -56,13 +53,13 @@
                 {% endblock %}
             </div>
 
-            {% block body %}
+        {% block body %}
 
-            {% endblock %}
+        {% endblock %}
 
-            {% block empty %}
+        {% block empty %}
 
-            {% endblock %}
+        {% endblock %}
 
         </div>
     </section>
@@ -71,101 +68,8 @@
 
 </body>
 
-<script>
-    function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = cookies[i].trim();
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
+{% block js %}
 
-    var csrftoken = getCookie('csrftoken');
-    const delButton = document.querySelectorAll('.delete_button');
-
-    const delUrl = (event) => {
-        event.preventDefault();
-        url = event.currentTarget.href;
-        console.log(url);
-        return fetch(url,
-            {
-                method: 'POST',
-                headers: new Headers({'X-CSRFToken': csrftoken}),
-                redirect: 'follow'
-            }).then(response => response.status).then(data => location.reload());
-    };
-
-    delButton.forEach(button => {
-        button.addEventListener('click', delUrl);
-    });
-
-    var scheduler = JSON.parse('{{scheduler_dict|safe}}');
-    console.log(scheduler);
-
-    var index;
-    for (index = 0; index < scheduler.length; ++index) {
-        var row = scheduler[index];
-        var check = document.getElementsByName(row.pk);
-        check.forEach((el) => {
-            el.checked = row.status;
-            el.addEventListener('change', (event) => {
-                inputCheck(event.target.checked, event.target.name)
-            });
-        });
-    }
-
-    const inputCheck = (check, id) => {
-        url = '/update/' + id;
-        return fetch(url,
-            {
-                method: 'PATCH',
-                headers: new Headers({
-                    'X-CSRFToken': csrftoken,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }),
-                redirect: 'follow',
-                body: JSON.stringify({'id': id, 'enabled': check})
-            }).then(response => response.status);
-    };
-
-    const loadAllFunc = (event) => {
-        event.preventDefault();
-        url = event.currentTarget.href;
-        return fetch(url,
-            {
-                method: 'POST',
-                headers: new Headers({'X-CSRFToken': csrftoken}),
-                redirect: 'follow'
-            }).then(response => response.status);
-    };
-
-    const loadAllButton = document.querySelector('.load_all_items');
-    loadAllButton.addEventListener('click', loadAllFunc);
-
-    const loadUpdateFunc = (event) => {
-        event.preventDefault();
-        url = event.currentTarget.href;
-        return fetch(url,
-            {
-                method: 'POST',
-                headers: new Headers({'X-CSRFToken': csrftoken}),
-                redirect: 'follow'
-            }).then(response => response.status);
-    };
-
-    const loadUpdateButton = document.querySelector('.load_update_items');
-    loadUpdateButton.addEventListener('click', loadUpdateFunc);
-
-
-</script>
+{% endblock %}
 
 </html>

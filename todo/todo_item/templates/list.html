@@ -24,7 +24,7 @@
             {% endif %}
         <div class="buttons">
             <div class="table-data-two_table-icon">
-                <a href='#'>
+                <a href="{% url 'item:edit' pk=list.id %}">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -43,7 +43,7 @@
                 {% endif %}
             </div>
             <div class="table-row_table_icon">
-                <a class="delete_button" href="#">
+                <a class="delete_button" href="{% url "item:delete" pk=list.id %}">
                     <svg width="20" height="22" viewBox="0 0 20 22" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
