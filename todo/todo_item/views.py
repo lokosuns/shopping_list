@@ -3,17 +3,21 @@ from main.models import ListModel
 from todo_item.models import ItemModel
 from todo_item.forms import ItemForm
 from django.http import HttpResponse
+import json
 
 
 def item_view(request, pk):
     list_ = ListModel.objects.select_related('user').get(id=pk)
     list_items = ItemModel.objects.filter(list_model=list_)
 
+    del_url = reverse('item:is_done')
+
     context = {
         'lists': list_items,
         'user_name': list_.user.username,
         'list_name': list_.name,
         'pk': pk,
+        'del_url': del_url,
     }
 
     return render(request, 'list.html', context)
@@ -78,3 +82,18 @@ def edit_item_view(request, pk):
         'list_model_id': item.list_model_id
     }
     return render(request, 'edit_item.html', context)
+
+
+def is_done_item_view(request):
+    body = json.loads(request.body.decode())
+    id_ = int(body.get('id', 0))
+    if id_:
+
+        item = ItemModel.objects.filter(id=id_).first()
+
+        if item:
+            item.is_done = not item.is_done
+            item.save()
+            return HttpResponse(status=201)
+
+    return HttpResponse(status=404)
