@@ -34,7 +34,7 @@ def main_view(request):
     return render(request, 'index.html', context)
 
 
-class MainView(generic.ListView):
+class MainView(LoginRequiredMixin, generic.ListView):
     login_url = reverse_lazy('registration:login')
     model = ListModel
     template_name = 'index.html'

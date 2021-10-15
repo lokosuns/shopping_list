@@ -1,12 +1,12 @@
 from django.template.defaulttags import register
-from todo.settings import div_count
+from todo.settings import DIV_COUNT
 
 
 @register.filter
 def get_count(lists):
     """
-    Возвращает список - количество для генерации пустых блоков
+    Возвращает список - количество, для генераци пустых блоков
     """
-
-    return range(div_count - len(lists))
-
+    if lists:
+        return range(DIV_COUNT - len(lists))
+    return []

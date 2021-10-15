@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from django import forms
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from main.models import ListModel
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -21,6 +22,7 @@ class CustomUserCreationForm(UserCreationForm):
                 'password_mismatch': "Пароль различается",
             }
         }
+
 
 class LoginForm(forms.Form):
 

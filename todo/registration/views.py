@@ -17,8 +17,8 @@ def registration_view(request):
     context = {
         'form': form
     }
-
     return render(request, 'registration.html', context)
+
 
 def login_view(request):
     form = LoginForm()

@@ -15,6 +15,6 @@ class ItemForm(forms.ModelForm):
         fields = ('name', 'list_model', 'expare_date')
         error_messages = {
             NON_FIELD_ERRORS: {
-                'unique_together': "Такое дело уже существует"
+                'unique_together': "Такое дело уже существует",
             }
         }

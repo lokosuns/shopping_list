@@ -10,6 +10,6 @@ class ListForm(forms.ModelForm):
         fields = ('name', 'user')
         error_messages = {
             NON_FIELD_ERRORS: {
-                'unique_together': "Имя уже существует"
+                'unique_together': "Имя уже существует",
             }
         }
