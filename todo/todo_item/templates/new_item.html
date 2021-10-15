@@ -1,17 +1,17 @@
 {% extends 'create_master.html' %}
 
 {% block header %}
-  <div class="auth__column_right_form__header">
+    <div class="auth__column_right_form__header">
        Новый элемент списка
-  </div>
+    </div>
 {% endblock %}
 
 {% block form %}
-  <form class="auth_form_class" action="{% url 'item:create' pk %}" id="auth_form" method="POST">
+    <form class="auth_form_class" action="{% url 'item:create' pk %}" id="auth_form" method="POST">
       {% csrf_token %}
       {{ form.name }}
-      {{ form.expare_date }}  
-  </form>
+      {{ form.expare_date }}
+    </form>
 {% endblock %}
 
 {% block cancel_form %}
